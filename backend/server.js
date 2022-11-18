@@ -1,20 +1,19 @@
 // @ts-check
 
 const express = require('express');
-const cors = require('cors');
 
 const PORT = 4000;
 
 const app = express();
 
-app.use(cors());
+app.get('/', (req, res) => {
+  console.log(req.query);
+  res.send(req.query);
+});
 
-app.use('/', (req, res) => {
-  const str = '안녕하세요. 여기는 백엔드 입니다!';
-  console.log(str);
-  const json = JSON.stringify(str);
-  console.log(json);
-  res.send(json);
+app.get('/:email/:password/:name/:gender', (req, res) => {
+  console.log(req.params);
+  res.send(req.params);
 });
 
 app.listen(PORT, () => {
