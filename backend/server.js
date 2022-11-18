@@ -7,6 +7,9 @@ const PORT = 4000;
 const app = express();
 const userRouter = express.Router();
 
+app.set('view engine', 'ejs');
+app.use('/css', express.static('views/css'));
+
 const USER = [
   {
     id: 'tetz',
@@ -77,6 +80,10 @@ userRouter.get('/show', (req, res) => {
     res.write(`<h2>USER name is ${USER[i].name}`);
   }
   res.end('');
+});
+
+userRouter.get('/ejs', (req, res) => {
+  res.render('index');
 });
 
 app.use('/users', userRouter);
