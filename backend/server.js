@@ -44,13 +44,14 @@ userRouter.post('/', (req, res) => {
 });
 
 userRouter.put('/:id', (req, res) => {
-  if (req.query.id && req.query.name) {
+  if (req.query.id && req.query.name && req.query.email) {
     const userData = USER.find((user) => user.id === req.params.id);
     if (userData) {
       const arrIndex = USER.findIndex((user) => user.id === req.params.id);
       const modifyUser = {
         id: req.query.id,
         name: req.query.name,
+        email: req.query.email,
       };
       USER[arrIndex] = modifyUser;
       res.send('회원 수정 완료');
